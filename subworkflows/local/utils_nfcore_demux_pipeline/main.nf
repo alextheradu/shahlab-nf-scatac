@@ -84,23 +84,14 @@ workflow PIPELINE_INITIALISATION {
     // Create channel from input file provided through params.input
     //
 
+    // demux pipeline: each row is one R2 fastq + the sample's shared markdup BAM.
+    // No lane-grouping/flattening needed here -- ULTRAPLEX runs per-fastq,
+    // and any per-sample grouping (e.g. before filter_bam) happens downstream
+    // in workflows/demux.nf where it's actually needed.
     channel
         .fromList(samplesheetToList(input, "${projectDir}/assets/schema_input.json"))
-        .map {
-            meta, fastq_1, fastq_2 ->
-                if (!fastq_2) {
-                    return [ meta.id, meta + [ single_end:true ], [ fastq_1 ] ]
-                } else {
-                    return [ meta.id, meta + [ single_end:false ], [ fastq_1, fastq_2 ] ]
-                }
-        }
-        .groupTuple()
-        .map { samplesheet ->
-            validateInputSamplesheet(samplesheet)
-        }
-        .map {
-            meta, fastqs ->
-                return [ meta, fastqs.flatten() ]
+        .map { meta, fastq_r2, markdup_bam ->
+            [ meta, file(fastq_r2), file(markdup_bam) ]
         }
         .set { ch_samplesheet }
 

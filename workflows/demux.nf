@@ -4,6 +4,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
+include { SAMTOOLS_INDEX         } from '../modules/nf-core/samtools/index/main'
+include { ULTRAPLEX              } from '../modules/local/ultraplex/main'
+include { EXTRACT_ATAC_READ_IDS  } from '../modules/local/extract_atac_read_ids/main'
+include { CONCAT_READ_IDS        } from '../modules/local/concat_read_ids/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_demux_pipeline'
@@ -26,7 +30,35 @@ workflow DEMUX {
     //
     // MODULE: Run FastQC
     //
-    FASTQC(ch_samplesheet)
+    ch_fastq_for_fastqc = ch_samplesheet
+        .map { meta, fastq_r2, markdup_bam -> [ meta, fastq_r2 ] }
+
+    FASTQC(ch_fastq_for_fastqc)
+
+    //
+    // MODULE: Demultiplex ATAC vs WGS reads per fastq
+    //
+    ch_fastq_for_ultraplex = ch_samplesheet
+        .map { meta, fastq_r2, markdup_bam -> [ meta, fastq_r2 ] }
+
+    ULTRAPLEX(
+        ch_fastq_for_ultraplex,
+        params.barcodes_csv,
+        params.ultraplex_sif
+    )
+
+    //
+    // MODULE: Extract read IDs from ATAC-classified reads
+    //
+    EXTRACT_ATAC_READ_IDS(ULTRAPLEX.out.atac)
+
+    //
+    // MODULE: Concatenate all per-fastq read ID lists into one per sample
+    //
+    ch_read_ids_grouped = EXTRACT_ATAC_READ_IDS.out.read_ids
+        .groupTuple()
+
+    CONCAT_READ_IDS(ch_read_ids_grouped)
 
     //
     // Collate and save software versions
