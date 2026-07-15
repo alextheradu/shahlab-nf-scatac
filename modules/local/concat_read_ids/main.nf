@@ -3,7 +3,7 @@ process CONCAT_READ_IDS {
     label 'process_low'
 
     input:
-    tuple val(meta), path(read_id_files, stageAs: 'inputs/*')
+    tuple val(meta), path(read_id_files, stageAs: "input_?/*")
 
     output:
     tuple val(meta), path("${meta.id}_atac_read_ids.txt"), emit: read_ids
