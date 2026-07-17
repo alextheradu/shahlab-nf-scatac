@@ -8,6 +8,7 @@ include { SAMTOOLS_INDEX         } from '../modules/nf-core/samtools/index/main'
 include { ULTRAPLEX              } from '../modules/local/ultraplex/main'
 include { EXTRACT_ATAC_READ_IDS  } from '../modules/local/extract_atac_read_ids/main'
 include { CONCAT_READ_IDS        } from '../modules/local/concat_read_ids/main'
+include { FILTER_BAM             } from '../modules/local/filter_bam/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_demux_pipeline'
@@ -59,6 +60,23 @@ workflow DEMUX {
         .groupTuple()
 
     CONCAT_READ_IDS(ch_read_ids_grouped)
+
+    //
+    // MODULE: Filter markdup BAM down to ATAC reads only
+    //
+    ch_markdup_bam = ch_samplesheet
+        .map { meta, fastq_r2, markdup_bam -> [ meta, markdup_bam ] }
+        .unique()
+
+    ch_filter_bam_input = ch_markdup_bam
+        .join(CONCAT_READ_IDS.out.read_ids)
+
+    FILTER_BAM(ch_filter_bam_input)
+
+    //
+    // MODULE: Index the ATAC-filtered BAM
+    //
+    SAMTOOLS_INDEX(FILTER_BAM.out.bam)
 
     //
     // Collate and save software versions
