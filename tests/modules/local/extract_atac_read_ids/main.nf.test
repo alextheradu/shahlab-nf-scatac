@@ -1,0 +1,30 @@
+nextflow_process {
+
+    name "Test Process EXTRACT_ATAC_READ_IDS"
+    script "modules/local/extract_atac_read_ids/main.nf"
+    process "EXTRACT_ATAC_READ_IDS"
+
+    test("extracts read IDs from a small ATAC fastq") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample' ],
+                    file("${projectDir}/tests/fixtures/tiny_atac.fastq.gz")
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.read_ids.size() == 1
+
+            def readIdsFile = file(process.out.read_ids[0][1])
+            def lines = readIdsFile.readLines()
+
+            assert lines.size() == 2
+        }
+    }
+}

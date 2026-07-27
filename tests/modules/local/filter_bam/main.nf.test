@@ -1,0 +1,55 @@
+nextflow_process {
+
+    name "Test Process FILTER_BAM"
+    script "modules/local/filter_bam/main.nf"
+    process "FILTER_BAM"
+
+    test("filters BAM down to only reads matching the read ID list") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample' ],
+                    file("${projectDir}/tests/fixtures/tiny_markdup.bam"),
+                    file("${projectDir}/tests/fixtures/tiny_read_ids.txt")
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.bam.size() == 1
+        }
+    }
+
+    test("filtered BAM contains only the requested read IDs") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample' ],
+                    file("${projectDir}/tests/fixtures/tiny_markdup.bam"),
+                    file("${projectDir}/tests/fixtures/tiny_read_ids.txt")
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def bamFile = file(process.out.bam[0][1])
+            def proc = ["samtools", "view", bamFile.toString()].execute()
+            proc.waitFor()
+            def lines = proc.text.readLines()
+            def readNames = lines.collect { it.split('\t')[0] }.unique()
+
+            assert readNames.size() == 2
+            assert readNames.contains("LH00834:104:233GLFLT3:5:1109:2978:22233")
+            assert readNames.contains("LH00834:104:233GLFLT3:5:1113:51237:25307")
+        }
+    }
+}

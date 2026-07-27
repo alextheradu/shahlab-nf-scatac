@@ -1,0 +1,37 @@
+nextflow_process {
+
+    name "Test Process CONCAT_READ_IDS"
+    script "modules/local/concat_read_ids/main.nf"
+    process "CONCAT_READ_IDS"
+
+    test("merges and dedupes read ID files from multiple fastqs") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample' ],
+                    [
+                        file("${projectDir}/tests/fixtures/read_ids_1.txt"),
+                        file("${projectDir}/tests/fixtures/read_ids_2.txt")
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.read_ids.size() == 1
+
+            def mergedFile = file(process.out.read_ids[0][1])
+            def lines = mergedFile.readLines()
+
+            assert lines.size() == 4
+            assert lines.contains("READ_A")
+            assert lines.contains("READ_B")
+            assert lines.contains("READ_C")
+            assert lines.contains("READ_D")
+        }
+    }
+}

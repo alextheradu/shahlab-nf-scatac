@@ -45,7 +45,10 @@ workflow DEMUX {
     ULTRAPLEX(
         ch_fastq_for_ultraplex,
         params.barcodes_csv,
-        params.ultraplex_sif
+        params.ultraplex_sif,
+        params.ultraplex_adapter,
+        params.ultraplex_adapter2,
+        params.singularity_bind_paths
     )
 
     //

@@ -105,6 +105,21 @@
                     "exists": true,
                     "description": "Path to the ultraplex singularity image (.sif).",
                     "fa_icon": "fas fa-box"
+                },
+                "ultraplex_adapter": {
+                    "type": "string",
+                    "default": "CTGTCTCTTATACACATCT",
+                    "description": "Adapter sequence (read 1) passed to ultraplex."
+                },
+                "ultraplex_adapter2": {
+                    "type": "string",
+                    "default": "CTGTCTCTTATACACATCTGACGCTGCCGACGA",
+                    "description": "Adapter sequence (read 2) passed to ultraplex."
+                },
+                "singularity_bind_paths": {
+                    "type": "string",
+                    "default": "/data1,/scratch/shahs3",
+                    "description": "Comma-separated host paths to bind into the ultraplex singularity container."
                 }
             }
         },

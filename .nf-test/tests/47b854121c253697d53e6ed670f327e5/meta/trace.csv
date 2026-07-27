@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	d3/383805	2750492	FILTER_BAM (test_sample)	COMPLETED	0	2026-07-20 12:34:16.447	1.4s	183ms	38.5%	5.2 MB	11.1 MB	147 KB	7 KB

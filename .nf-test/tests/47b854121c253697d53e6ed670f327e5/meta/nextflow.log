@@ -1,0 +1,96 @@
+Jul-20 12:34:04.978 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/meta/nextflow.log run /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test-47b854121c253697d53e6ed670f327e5.nf -c /home/radua/repos/datac-demux-nf/shahlab-demux/nextflow.config -c /home/radua/repos/datac-demux-nf/shahlab-demux/tests/nextflow.config -params-file /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/meta/params.json -ansi-log false -profile singularity -with-trace /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/meta/trace.csv -w /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work
+Jul-20 12:34:05.263 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 26.04.4
+Jul-20 12:34:05.309 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/radua/.nextflow/plugins; core-plugins: nf-amazon@3.9.2,nf-azure@1.22.6,nf-cloudcache@0.6.0,nf-codecommit@0.5.3,nf-console@1.3.0,nf-google@1.27.3,nf-k8s@1.5.4,nf-seqera@0.21.0,nf-tower@1.28.1,nf-wave@1.21.0
+Jul-20 12:34:05.400 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-20 12:34:05.410 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-20 12:34:05.417 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.14.1 in 'deployment' mode
+Jul-20 12:34:05.476 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Jul-20 12:34:05.935 [main] DEBUG nextflow.plugin.PluginUpdater - Using plugin repository: HttpPluginRepository [registry]; url=https://registry.nextflow.io/api
+Jul-20 12:34:05.978 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-20 12:34:06.111 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /home/radua/repos/datac-demux-nf/shahlab-demux/nextflow.config
+Jul-20 12:34:06.129 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/radua/repos/datac-demux-nf/shahlab-demux/nextflow.config
+Jul-20 12:34:06.134 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/radua/repos/datac-demux-nf/shahlab-demux/tests/nextflow.config
+Jul-20 12:34:06.135 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/radua/repos/datac-demux-nf/shahlab-demux/nextflow.config
+Jul-20 12:34:06.137 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/radua/repos/datac-demux-nf/shahlab-demux/nextflow.config
+Jul-20 12:34:06.143 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/radua/repos/datac-demux-nf/shahlab-demux/tests/nextflow.config
+Jul-20 12:34:06.147 [main] DEBUG nextflow.config.ConfigParserFactory - Using config parser v2
+Jul-20 12:34:06.181 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Jul-20 12:34:09.612 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Jul-20 12:34:10.395 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Jul-20 12:34:10.457 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [debug, conda, mamba, docker, arm64, emulate_amd64, singularity, slurm, local_test, podman, shifter, charliecloud, apptainer, wave, gpu, test, test_full, abims, adcra, alice, alliance_canada, apollo, arcc, aws_tower, awsbatch, azurebatch, bi, bigpurple, bih, binac2, biohpc_gen, biowulf, bluebear, cambridge, cannon, cbe, ccga_dx, ccga_cau, ceci_dragon2, ceci_nic5, cedars, ceres, cfc, cfc_dev, cheaha, computerome, create, crg, crick, cropdiversityhpc, crukmi, csiro_petrichor, czbiohub_aws, daisybio, denbi_qbic, dkfz, dirac, ebc, eddie, ebi_codon, ebi_codon_slurm, einstein, embl_hd, engaging, ethz_euler, eva, eva_grace, fgcz, fred_hutch, fsu_draco, fub_curta, genotoul, genouest, giga, gis, googlebatch, hasta, hazel, hki_genie, hypatia, humantechnopole, icr_alma, icr_davros, ifb_core, imb, imperial, incliva, ipop_up, iris, janelia, jax, jex, unsw_katana, ku_sund_danhead, kaust, ki_luria, leicester, lovelace, lrz_cm4, lugh, m3c, maestro, mahuika, mana, marjorie, marvin, mccleary, mcw_rcc, medair, mjolnir_globe, mpcdf, mpcdf_viper, mssm, munin, nci_gadi, nu_genomics, nygc, nyu_hpc, oist, pasteur, pawsey_nimbus, pawsey_setonix, pdc_kth, phoenix, psmn, purdue_bell, purdue_gautschi, purdue_negishi, qmul_apocrita, rki, rosalind, rosalind_uge, roslin, sage, sahmri, sanger, ilifu, scw, seadragon, seattlechildrens, seawulf, seg_globe, self_hosted_runner, shu_bmrc, stjude, tes, tigem, tubingen_apg, tufts, tuos_stanage, ucd_sonic, ucl_cscluster, ucl_myriad, uct_hpc, uge, unc_lccc, unc_longleaf, unibe_ibu, unity, uod_hpc, uppmax, utd_juno, uw_hyak_pedslabs, uzh, uzl_omics, vai, vsc_calcua, vsc_kul_uhasselt, vsc_ugent, wehi, wustl_htcf, xanadu, york_viking]
+Jul-20 12:34:10.560 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.5.1]
+Jul-20 12:34:10.585 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-20 12:34:10.595 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.5.1]
+Jul-20 12:34:10.604 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.5.1
+Jul-20 12:34:10.662 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.5.1' resolved
+Jul-20 12:34:10.667 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.5.1'
+Jul-20 12:34:10.693 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.5.1
+Jul-20 12:34:10.817 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/radua/.nextflow/secrets/store.json
+Jul-20 12:34:10.821 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@191ec193] - activable => nextflow.secret.LocalSecretsProvider@191ec193
+Jul-20 12:34:10.877 [main] INFO  nextflow.cli.CmdRun - Launching `/home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test-47b854121c253697d53e6ed670f327e5.nf` [irreverent_wilson] - revision: 3a2daff295
+Jul-20 12:34:10.886 [main] ERROR org.pf4j.AbstractExtensionFinder - Different class loaders: 'org.pf4j.PluginClassLoader@4fb57fb3' (E) and 'jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44' (EP)
+Jul-20 12:34:10.960 [main] WARN  nextflow.config.ConfigValidator - Unrecognized config option 'validation.defaultIgnoreParams'
+Jul-20 12:34:10.987 [main] WARN  nextflow.config.ConfigValidator - Unrecognized config option 'validation.monochromeLogs'
+Jul-20 12:34:11.138 [main] DEBUG nextflow.Session - Session UUID: fd9df457-7455-4418-801b-74b3cf825fcf
+Jul-20 12:34:11.149 [main] DEBUG nextflow.Session - Run name: irreverent_wilson
+Jul-20 12:34:11.150 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jul-20 12:34:11.179 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-20 12:34:11.190 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 12:34:11.393 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 26.04.4 build 12445
+  Created: 17-06-2026 16:30 UTC (12:30 EDT)
+  System: Linux 4.18.0-425.19.2.el8_7.x86_64
+  Runtime: Groovy 4.0.31 on OpenJDK 64-Bit Server VM 21.0.10-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 2750315@iscn001.mskcc.org [10.247.113.180]
+  CPUs: 2 - Mem: 16 GB (12.8 GB) - Swap: 0 (0)
+Jul-20 12:34:11.530 [main] DEBUG nextflow.Session - Work-dir: /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work [UNKNOWN (0x18031977)]
+Jul-20 12:34:11.532 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/radua/repos/datac-demux-nf/shahlab-demux/bin
+Jul-20 12:34:11.548 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-20 12:34:11.577 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jul-20 12:34:11.582 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Jul-20 12:34:11.616 [main] DEBUG nextflow.Session - Observer factory (v2): ValidationObserverFactory
+Jul-20 12:34:11.726 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-20 12:34:11.803 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 3; maxThreads: 1000
+Jul-20 12:34:12.278 [main] DEBUG nextflow.Session - Session start
+Jul-20 12:34:12.294 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/meta/trace.csv
+Jul-20 12:34:12.301 [main] DEBUG nextflow.script.ScriptLoaderFactory - Using script parser v2
+Jul-20 12:34:13.267 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-20 12:34:13.691 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_medium` matches labels `process_medium` for process with name FILTER_BAM
+Jul-20 12:34:13.708 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 12:34:13.711 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 12:34:13.737 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-20 12:34:13.748 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=2; memory=16 GB; capacity=2; pollInterval=100ms; dumpInterval=5m
+Jul-20 12:34:13.751 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-20 12:34:13.874 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FILTER_BAM': maxForks=0; fair=false; array=0
+Jul-20 12:34:14.111 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Jul-20 12:34:14.115 [main] DEBUG nextflow.Session - Igniting dataflow network (1)
+Jul-20 12:34:14.115 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FILTER_BAM
+Jul-20 12:34:14.117 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  _nf_script_1271502fc0662f6d: /home/radua/repos/datac-demux-nf/shahlab-demux/modules/local/filter_bam/main.nf
+  Main: /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test-47b854121c253697d53e6ed670f327e5.nf
+Jul-20 12:34:14.118 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-20 12:34:14.118 [main] DEBUG nextflow.Session - Session await
+Jul-20 12:34:14.357 [Actor Thread 1] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Jul-20 12:34:14.368 [Actor Thread 1] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8c/8c5d2818c8b9f58e1fba77ce219fdaf32087ae53e857c4a496402978af26e78c/data [cache /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-8c-8c5d2818c8b9f58e1fba77ce219fdaf32087ae53e857c4a496402978af26e78c-data.img]
+Jul-20 12:34:16.155 [Actor Thread 1] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/8c/8c5d2818c8b9f58e1fba77ce219fdaf32087ae53e857c4a496402978af26e78c/data path=/home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-8c-8c5d2818c8b9f58e1fba77ce219fdaf32087ae53e857c4a496402978af26e78c-data.img
+Jul-20 12:34:16.420 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 12:34:16.447 [Task submitter] INFO  nextflow.Session - [d3/383805] Submitted process > FILTER_BAM (test_sample)
+Jul-20 12:34:17.845 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: FILTER_BAM (test_sample); status: COMPLETED; exit: 0; error: -; workDir: /home/radua/repos/datac-demux-nf/shahlab-demux/.nf-test/tests/47b854121c253697d53e6ed670f327e5/work/d3/3838051374f70952770a4523a9eb24]
+Jul-20 12:34:17.847 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 12:34:17.924 [TaskFinalizer-1] WARN  nextflow.processor.PublishDir - Process `FILTER_BAM` publishDir path contains a variable with a null value
+Jul-20 12:34:17.937 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 12:34:17.958 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-20 12:34:18.047 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-20 12:34:18.047 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-20 12:34:18.052 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-20 12:34:18.212 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-20 12:34:18.282 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=366ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=2; peakMemory=4 GB; ]
+Jul-20 12:34:18.347 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-20 12:34:19.879 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-20 12:34:20.137 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-20 12:34:20.164 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-20 12:34:20.280 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.5.1'
+Jul-20 12:34:20.281 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Jul-20 12:34:20.282 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-20 12:34:20.283 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

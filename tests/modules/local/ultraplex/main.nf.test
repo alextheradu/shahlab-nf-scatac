@@ -1,0 +1,32 @@
+nextflow_process {
+
+    name "Test Process ULTRAPLEX"
+    script "modules/local/ultraplex/main.nf"
+    process "ULTRAPLEX"
+
+    test("demultiplexes a small fastq into ATAC/WGS/nomatch") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test_sample' ],
+                    file("${projectDir}/tests/fixtures/tiny_atac.fastq.gz")
+                ]
+                input[1] = "/data1/shahs3/users/mcphera1/projects/datac/barcodes.csv"
+                input[2] = "/data1/shahs3/users/mcphera1/projects/datac/ultraplex_latest.sif"
+                input[3] = "CTGTCTCTTATACACATCT"
+                input[4] = "CTGTCTCTTATACACATCTGACGCTGCCGACGA"
+                input[5] = "/data1,/scratch/shahs3"
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.atac.size() == 1
+            assert process.out.wgs.size() == 1
+            assert process.out.nomatch.size() == 1
+        }
+    }
+}
