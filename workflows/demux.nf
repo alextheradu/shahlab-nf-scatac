@@ -9,6 +9,10 @@ include { ULTRAPLEX              } from '../modules/local/ultraplex/main'
 include { EXTRACT_ATAC_READ_IDS  } from '../modules/local/extract_atac_read_ids/main'
 include { CONCAT_READ_IDS        } from '../modules/local/concat_read_ids/main'
 include { FILTER_BAM             } from '../modules/local/filter_bam/main'
+include { MAKE_FRAGMENTS         } from '../modules/local/make_fragments/main'
+include { BGZIP_FRAGMENTS        } from '../modules/local/bgzip_fragments/main'
+include { ARCHR_QC               } from '../modules/local/archr_qc/main'
+include { BUILD_QC_REPORT        } from '../modules/local/build_qc_report/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_demux_pipeline'
@@ -80,6 +84,23 @@ workflow DEMUX {
     // MODULE: Index the ATAC-filtered BAM
     //
     SAMTOOLS_INDEX(FILTER_BAM.out.bam)
+
+    //
+    // MODULE: Convert BAM to fragments, then run ArchR QC + build interactive report
+    //
+    ch_bam_for_fragments = FILTER_BAM.out.bam
+        .join(SAMTOOLS_INDEX.out.index)
+
+    MAKE_FRAGMENTS(ch_bam_for_fragments)
+
+    BGZIP_FRAGMENTS(MAKE_FRAGMENTS.out.fragments)
+
+    ARCHR_QC(BGZIP_FRAGMENTS.out.fragments_indexed)
+
+    ch_report_input = ARCHR_QC.out.percell_csv
+        .join(BGZIP_FRAGMENTS.out.fragments_indexed)
+
+    BUILD_QC_REPORT(ch_report_input)
 
     //
     // Collate and save software versions
