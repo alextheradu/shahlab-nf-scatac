@@ -53,8 +53,6 @@ nextflow run shahlab/demux \
 
 shahlab/demux was originally written by Alex Radu.
 
-We thank the following people for their extensive assistance in the development of this pipeline:
-
 <!-- TODO nf-core: If applicable, make list of people who have also contributed -->
 
 ## Contributions and Support
