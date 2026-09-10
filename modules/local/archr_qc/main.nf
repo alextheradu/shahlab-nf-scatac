@@ -2,10 +2,12 @@ process ARCHR_QC {
     tag "${meta.id}"
     label 'process_high'
     // ArchR plus the hg19 annotation packages that addArchRGenome("hg19") needs;
-    // the stock r-archr biocontainer ships without them.
+    // the stock r-archr biocontainer ships without them. Rebuild the image with
+    // scripts/build_wave_containers.py after editing environment.yml.
+    conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
-        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ba/ba1187b757ad078658207995f4f1d3be4aee78b217a692b89c50e19ac57fb149/data'
-        : 'community.wave.seqera.io/library/r-archr_bioconductor-bsgenome.hsapiens.ucsc.hg19_bioconductor-txdb.hsapiens.ucsc.hg19.knowngene_bioconductor-org.hs.eg.db:54e6e9397975c3c3'}"
+        ? 'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/16/16b4da322f80a0c0c8b13e4c804d10d4cd902871ddd8a09920d52e5c8493a026/data'
+        : 'community.wave.seqera.io/library/r-archr_bioconductor-bsgenome.hsapiens.ucsc.hg19_bioconductor-txdb.hsapiens.ucsc.hg19.knowngene_bioconductor-org.hs.eg.db:1af2da1ed939ee95'}"
 
     input:
     tuple val(meta), path(fragments), path(fragments_tbi)
