@@ -88,8 +88,7 @@
             "fa_icon": "fas fa-dna",
             "description": "Parameters specific to the ultraplex ATAC/WGS demultiplexing step.",
             "required": [
-                "barcodes_csv",
-                "ultraplex_sif"
+                "barcodes_csv"
             ],
             "properties": {
                 "barcodes_csv": {
@@ -98,13 +97,6 @@
                     "exists": true,
                     "description": "Path to the barcodes CSV file used by ultraplex.",
                     "fa_icon": "fas fa-file-csv"
-                },
-                "ultraplex_sif": {
-                    "type": "string",
-                    "format": "file-path",
-                    "exists": true,
-                    "description": "Path to the ultraplex singularity image (.sif).",
-                    "fa_icon": "fas fa-box"
                 },
                 "ultraplex_adapter": {
                     "type": "string",
@@ -115,11 +107,6 @@
                     "type": "string",
                     "default": "CTGTCTCTTATACACATCTGACGCTGCCGACGA",
                     "description": "Adapter sequence (read 2) passed to ultraplex."
-                },
-                "singularity_bind_paths": {
-                    "type": "string",
-                    "default": "/data1,/scratch/shahs3",
-                    "description": "Comma-separated host paths to bind into the ultraplex singularity container."
                 }
             }
         },

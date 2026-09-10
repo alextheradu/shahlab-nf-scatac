@@ -13,11 +13,9 @@ nextflow_process {
                     [ id: 'test_sample' ],
                     file("${projectDir}/tests/fixtures/tiny_atac.fastq.gz")
                 ]
-                input[1] = "/data1/shahs3/users/mcphera1/projects/datac/barcodes.csv"
-                input[2] = "/data1/shahs3/users/mcphera1/projects/datac/ultraplex_latest.sif"
-                input[3] = "CTGTCTCTTATACACATCT"
-                input[4] = "CTGTCTCTTATACACATCTGACGCTGCCGACGA"
-                input[5] = "/data1,/scratch/shahs3"
+                input[1] = file("/data1/shahs3/users/mcphera1/projects/datac/barcodes.csv")
+                input[2] = "CTGTCTCTTATACACATCT"
+                input[3] = "CTGTCTCTTATACACATCTGACGCTGCCGACGA"
                 """
             }
         }

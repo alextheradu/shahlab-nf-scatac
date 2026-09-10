@@ -42,11 +42,12 @@ nextflow run shahlab/demux \
    -profile singularity,slurm \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
-   --barcodes_csv <path/to/barcodes.csv> \
-   --ultraplex_sif <path/to/ultraplex.sif>
+   --barcodes_csv <path/to/barcodes.csv>
 ```
 
-`--barcodes_csv` and `--ultraplex_sif` are required — they point to the barcode reference file and the Ultraplex singularity image used for demultiplexing.
+`--barcodes_csv` is required — it points to the barcode reference file used for demultiplexing.
+
+All tool dependencies are supplied by containers that Nextflow pulls automatically, so no local images or conda environments need to be built first.
 
 Outputs for each sample are published together under `<OUTDIR>/<sample>/`, including the filtered BAM, its index, the fragments file, ArchR's QC PDFs, and the interactive HTML report.
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Build a styled interactive HTML QC report: two chart cards, centered on the
 page, with a header, info tooltips, and a generation timestamp.

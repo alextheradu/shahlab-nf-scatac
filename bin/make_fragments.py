@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import snapatac2 as snap
 import argparse
 import json
