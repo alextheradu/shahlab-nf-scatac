@@ -1,7 +1,9 @@
 process MAKE_FRAGMENTS {
     tag "${meta.id}"
     label 'process_medium'
-    conda "/home/radua/.conda/envs/snapatac2-env"
+    container "${workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
+        ? 'https://depot.galaxyproject.org/singularity/snapatac2:2.9.0--py312h91a5aaa_1'
+        : 'quay.io/biocontainers/snapatac2:2.9.0--py312h91a5aaa_1'}"
 
     input:
     tuple val(meta), path(bam), path(bai)

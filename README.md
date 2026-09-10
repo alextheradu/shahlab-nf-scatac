@@ -42,13 +42,31 @@ nextflow run shahlab/demux \
    -profile singularity,slurm \
    --input samplesheet.csv \
    --outdir <OUTDIR> \
-   --barcodes_csv <path/to/barcodes.csv> \
-   --ultraplex_sif <path/to/ultraplex.sif>
+   --barcodes_csv <path/to/barcodes.csv>
 ```
 
-`--barcodes_csv` and `--ultraplex_sif` are required — they point to the barcode reference file and the Ultraplex singularity image used for demultiplexing.
+`--barcodes_csv` is required — it points to the barcode reference file used for demultiplexing.
+
+All tool dependencies are supplied by containers that Nextflow pulls automatically, so no local images or conda environments need to be built first.
 
 Outputs for each sample are published together under `<OUTDIR>/<sample>/`, including the filtered BAM, its index, the fragments file, ArchR's QC PDFs, and the interactive HTML report.
+
+## Containers
+
+Most processes use ready-made [BioContainers](https://biocontainers.pro/) images. Two need software combinations that no public image provides, so they use images built on the [Seqera Containers](https://seqera.io/containers/) community registry:
+
+| Module | Contents |
+| --- | --- |
+| `archr_qc` | ArchR plus the hg19 annotation packages `addArchRGenome("hg19")` requires |
+| `build_qc_report` | python, pandas, numpy, plotly |
+
+Each of those modules has an `environment.yml` that is the single source of truth for its image. Wave derives the image tag from a hash of the build request, so an unchanged `environment.yml` always resolves to the same image. If you edit one, regenerate the image and update the module's `container` directive:
+
+```bash
+scripts/build_wave_containers.py --wait
+```
+
+Seqera commits to retaining community images for a minimum of five years. The script is there so the images can be rebuilt if that ever lapses, or if you would rather host them yourself.
 
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/running/run-pipelines#using-parameter-files).

@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  # ArchR itself. The stock r-archr biocontainer is not enough on its own: it
+  # ships without the hg19 annotation packages, so addArchRGenome("hg19") falls
+  # back to BiocManager::install at run time, which fails in a read-only container.
+  - bioconda::r-archr=1.0.3
+  # The three annotation packages addArchRGenome("hg19") requires.
+  - bioconda::bioconductor-bsgenome.hsapiens.ucsc.hg19=1.4.3
+  - bioconda::bioconductor-txdb.hsapiens.ucsc.hg19.knowngene=3.2.2
+  - bioconda::bioconductor-org.hs.eg.db=3.20.0
+# Known-good resolution, for reference when debugging a drifted rebuild:
+#   r-base                                    4.4.3  h502d0c9_11
+#   r-archr                                   1.0.3  r44h503566f_4
+#   bioconductor-bsgenome.hsapiens.ucsc.hg19  1.4.3  r44hdfd78af_9
+#   bioconductor-txdb.hsapiens.ucsc.hg19.knowngene  3.2.2  r44hdfd78af_17
+#   bioconductor-org.hs.eg.db                 3.20.0 r44hdfd78af_0
